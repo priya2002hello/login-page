@@ -1,4 +1,4 @@
-const {readFileSync}=require('fs')
+//const {readFileSync}=require('fs')
 const express=require('express')
 require('./db/conn') 
 const Register=require('./models/registration');
@@ -48,7 +48,7 @@ app.post('/registration',async(req,res)=>{
              email:req.body.email
          })
          const registered=await user.save()
-         res.status(201).render("index");
+         res.status(201).render("login");
       }
       else
       {
@@ -64,6 +64,7 @@ app.get('/login',(req,res)=>{
     res.render("login")
 })
 
+
 app.post('/login',async(req,res)=>{
    try {
        const user=req.body.eu;
@@ -71,7 +72,7 @@ app.post('/login',async(req,res)=>{
 
      const username= await Register.findOne({username:user})
      if(password==username.password){
-         res.status(201).render('index')
+         res.status(201).render('home-page')
          
      }
      else{
@@ -81,7 +82,6 @@ app.post('/login',async(req,res)=>{
       res.status(400).send("invalid login details")
    }
 })
-
     app.listen(port,()=>{
-        console.log('server is running')
+        console.log('server is running at'+port)
     })

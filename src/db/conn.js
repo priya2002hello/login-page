@@ -4,7 +4,7 @@ mongoose.connect('mongodb://localhost:27017/loginessential',{
     useUnifiedTopology:true,
     useCreateIndex:true
 }).then(()=>{
-    console.log("connecting succesful")
+    console.log("connection to database successful")
 }).catch((e)=>{
     console.log('no connection')
 })
